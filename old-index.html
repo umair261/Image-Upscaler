@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MCP Coming Soon | AI Images</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="MCP Coming Soon - AI-powered images and tools."
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        background: #0b1120;
+        font-family: 'Roboto', Arial, sans-serif;
+      }
+      /* Animated AI background (particles effect) */
+      body {
+        background: linear-gradient(
+          132deg,
+          #1a237e 0%,
+          #0b1120 70%,
+          #00bcd4 100%
+        );
+        min-height: 100vh;
+        width: 100vw;
+        position: relative;
+        overflow: hidden;
+      }
+      .bg-animation {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 0;
+      }
+      .center-content {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .main-title {
+        font-size: 2.8rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        background: linear-gradient(92deg, #00bcd4, #8bc34a 70%, #fbc02d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+      }
+      .subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+        color: #bdbdbd;
+        font-weight: 400;
+        letter-spacing: 1px;
+      }
+      .coming-soon {
+        font-size: 2.2rem;
+        font-weight: bold;
+        background: linear-gradient(92deg, #e91e63, #fff176 70%, #00e676 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: blink 1.2s infinite alternate;
+        margin-bottom: 40px;
+      }
+      @keyframes blink {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0.6;
+        }
+      }
+      .brand-mark {
+        margin-top: 30px;
+        font-size: 1rem;
+        color: #c8e6c9;
+        opacity: 0.7;
+        letter-spacing: 1px;
+      }
+      /* Responsive Design */
+      @media (max-width: 700px) {
+        .main-title {
+          font-size: 2rem;
+        }
+        .coming-soon {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="bg-animation"></canvas>
+    <div class="center-content">
+      <div class="main-title">AI Images Gallery</div>
+      <div class="subtitle">
+        The next-gen platform for MCP-powered Artificial Intelligence images
+      </div>
+      <div class="coming-soon">MCP Coming Soon</div>
+      <div class="brand-mark">© 2025 Zubair Sharif | All Rights Reserved</div>
+    </div>
+    <script>
+      // Simple particles animation for AI-like background effect
+      const canvas = document.querySelector('.bg-animation')
+      const ctx = canvas.getContext('2d')
+      let width = window.innerWidth,
+        height = window.innerHeight
+      function resize() {
+        width = window.innerWidth
+        height = window.innerHeight
+        canvas.width = width
+        canvas.height = height
+      }
+      resize()
+      window.addEventListener('resize', resize)
+
+      const particles = []
+      function Particle() {
+        this.x = Math.random() * width
+        this.y = Math.random() * height
+        this.radius = 1.5 + Math.random() * 3
+        this.speed = 0.2 + Math.random()
+        this.angle = Math.random() * 2 * Math.PI
+      }
+      for (let i = 0; i < 100; i++) {
+        particles.push(new Particle())
+      }
+      function animate() {
+        ctx.clearRect(0, 0, width, height)
+        ctx.save()
+        ctx.globalAlpha = 0.35
+        ctx.fillStyle = '#00bcd4'
+        for (let p of particles) {
+          p.x += Math.cos(p.angle) * p.speed
+          p.y += Math.sin(p.angle) * p.speed
+          if (p.x < 0) p.x = width
+          if (p.x > width) p.x = 0
+          if (p.y < 0) p.y = height
+          if (p.y > height) p.y = 0
+          ctx.beginPath()
+          ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI)
+          ctx.fill()
+        }
+        ctx.restore()
+        requestAnimationFrame(animate)
+      }
+      animate()
+    </script>
+  </body>
+</html>

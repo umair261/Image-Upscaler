@@ -1,0 +1,130 @@
+[cmyk] {
+  text-align: center;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.adsbox {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3vh;
+  padding-bottom: 2vh;
+}
+
+.formContainer {
+  background-color: #fff;
+  padding: 1rem 0;
+  width: 100%;
+  color: black;
+  box-shadow: 0px 0px 3px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  margin-bottom: 23px;
+}
+
+[searchBar] {
+  flex-direction: column;
+}
+
+[cmyk] {
+  text-align: center;
+}
+
+[go-to-top] {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+input[type='text'] {
+  width: 50%;
+}
+
+.colorCardsContainer {
+  width: 100%;
+  display: flex;
+  gap: 1vw;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.colorCard {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0px 0px 3px black;
+}
+
+.colorPreview {
+  width: 100%;
+  height: 60%;
+}
+
+.title {
+  font-weight: 700;
+}
+
+label {
+  padding: 12px;
+}
+
+.nodisplay {
+  display: none;
+}
+
+.resetCMYK {
+  padding: 5px 0px;
+  width: 79%;
+  margin-top: 11px;
+}
+
+.loadMoreBtn {
+  cursor: pointer;
+  font-family: helvetica;
+  background-color: #f84251;
+  color: white;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 3px;
+  width: 100%;
+  display: block;
+  padding: 14px 0px;
+  margin: 10px 0px 10px 0px;
+  border: 1px solid #f84251;
+}
+
+.loadMoreBtn:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+}
+
+input#pantoneTextInput {
+  padding: 10px;
+}
