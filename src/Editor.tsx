@@ -73,6 +73,8 @@ export default function Editor(props: EditorProps) {
   const canvasDiv = useRef<HTMLDivElement>(null)
   const [downloaded, setDownloaded] = useState(true)
   const [downloadProgress, setDownloadProgress] = useState(0)
+
+  // Ensure windowSize is used to trigger redraws on resize
   const windowSize = useWindowSize()
 
   const draw = useCallback(
@@ -85,42 +87,40 @@ export default function Editor(props: EditorProps) {
         renders[index === -1 ? renders.length - 1 : index] ?? original
       const { canvas } = context
 
-      const divWidth = canvasDiv.current?.offsetWidth ?? 0
-      const divHeight = canvasDiv.current?.offsetHeight ?? 0
+      // --- CHANGE START: Scaling Logic ---
 
-      // 计算宽高比
-      const imgAspectRatio = currRender.width / currRender.height
-      const divAspectRatio = divWidth / divHeight
+      // 1. Define your constraints
+      const maxWidth = window.innerWidth * 0.8
+      const maxHeight = window.innerHeight * 0.85
 
-      let canvasWidth
-      let canvasHeight
+      // 2. Ensure image exists to avoid division by zero
+      if (currRender.width && currRender.height) {
+        // 3. Calculate Scale Factor ("Contain" logic)
+        // This finds the smallest ratio to fit both width and height constraints
+        const scale = Math.min(
+          maxWidth / currRender.width,
+          maxHeight / currRender.height
+        )
 
-      // 比较宽高比以决定如何缩放
-      if (divAspectRatio > imgAspectRatio) {
-        // div 较宽，基于高度缩放
-        canvasHeight = divHeight
-        canvasWidth = currRender.width * (divHeight / currRender.height)
-      } else {
-        // div 较窄，基于宽度缩放
-        canvasWidth = divWidth
-        canvasHeight = currRender.height * (divWidth / currRender.width)
-      }
+        // 4. Apply scale
+        canvas.width = currRender.width * scale
+        canvas.height = currRender.height * scale
 
-      // Check for valid dimensions to avoid errors
-      if (canvasWidth && canvasHeight) {
-        canvas.width = canvasWidth
-        canvas.height = canvasHeight
-
+        // Draw image
         if (currRender?.src) {
           context.drawImage(currRender, 0, 0, canvas.width, canvas.height)
         } else {
           context.drawImage(original, 0, 0, canvas.width, canvas.height)
         }
+
+        // Draw lines
         const currentLine = lines[lines.length - 1]
         drawLines(context, [currentLine])
       }
+      // --- CHANGE END ---
     },
-    [context, lines, original, renders]
+    // Add windowSize to dependency array so it redraws when browser resizes
+    [context, lines, original, renders, windowSize]
   )
 
   const refreshCanvasMask = useCallback(() => {
@@ -328,6 +328,7 @@ export default function Editor(props: EditorProps) {
     }
 
     const separatorUp = () => {
+      window.removeEventListener('mouseup', separatorUp)
       window.removeEventListener('mousemove', separatorMove)
       setUseSeparator(false)
     }
@@ -499,7 +500,7 @@ export default function Editor(props: EditorProps) {
   return (
     <div
       className={[
-        'flex flex-col items-center h-full justify-between',
+        'flex flex-col items-center w-full min-h-full justify-between',
         isInpaintingLoading ? 'animate-pulse-fast pointer-events-none' : '',
       ].join(' ')}
     >
@@ -527,9 +528,7 @@ export default function Editor(props: EditorProps) {
           'my-2',
           'relative',
         ].join(' ')}
-        style={{
-          width: '70vw',
-        }}
+        // --- CHANGE: Removed style={{ width: '70vw' }} to allow auto-sizing based on canvas ---
         ref={canvasDiv}
       >
         <div className="relative">

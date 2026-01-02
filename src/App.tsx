@@ -70,7 +70,7 @@ function App() {
 
       <main
         style={{
-          height: 'calc(100vh - 56px)',
+          height: 'auto',
         }}
         className=" relative"
       >
@@ -78,7 +78,11 @@ function App() {
           <Editor file={file} />
         ) : (
           <>
-            <div className="flex h-full flex-1 flex-col items-center justify-center overflow-hidden">
+            <div
+              className="flex h-full flex-1 flex-col items-center justify-center overflow-hidden"
+              style={{ width: '2050px' }}
+            >
+              {' '}
               <div className="h-72 sm:w-1/2 max-w-5xl">
                 <FileSelect
                   onSelection={async f => {
@@ -90,7 +94,7 @@ function App() {
                   }}
                 />
               </div>
-              <div className="flex flex-col sm:flex-row pt-10 items-center justify-center cursor-pointer">
+              <div className="hidden flex flex-col sm:flex-row pt-10 items-center justify-center cursor-pointer">
                 <span className="text-gray-500">{m.try_it_images()}</span>
                 <div className="flex space-x-2 sm:space-x-4 px-4">
                   {['bag', 'dog', 'car', 'bird', 'jacket', 'shoe', 'paris'].map(

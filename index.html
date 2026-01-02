@@ -155,9 +155,6 @@
       type="text/css"
       href="./css/style2.css?version=5.1"
     />
-    <script src="./js/jquery.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/jquery.form.js"></script>
 
     <link rel="stylesheet" href="/css/page_style.css?version=3.8" />
   </head>
@@ -201,7 +198,7 @@
                 </li>
               </ul>
               <a href="#" id="pull"
-                ><img src="./img/nav-icon.png" title="menu"
+                ><img width="25" src="./img/nav-icon.png" title="menu"
               /></a>
             </nav>
 
@@ -524,7 +521,7 @@
                 class="fbbt"
                 target="_blank"
               >
-                <img src="./img/facebook.svg" class="fbbt-img" alt="facebook" />
+                <img style="background-color: white;" src="./img/facebook.svg" class="fbbt-img" alt="facebook" />
                 Share
               </a>
             </div>
@@ -614,28 +611,31 @@
             </div>
             <div class="clearfix"></div>
 
-            <script>
-              $(function () {
-                var pull = $('#pull')
-                menu = $('nav ul')
-                menuHeight = menu.height()
-                $(pull).on('click', function (e) {
-                  e.preventDefault()
-                  menu.slideToggle()
-                })
-                $(window).resize(function () {
-                  var w = $(window).width()
-                  if (w > 320 && menu.is(':hidden')) {
-                    menu.removeAttr('style')
-                  }
-                })
-              })
-            </script>
+    
           </div>
         </div>
       </div>
     </div>
-
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jquery.form.js"></script>
+         <script>
+      $(function () {
+        var pull = $('#pull')
+        menu = $('nav ul')
+        menuHeight = menu.height()
+        $(pull).on('click', function (e) {
+          e.preventDefault()
+          menu.slideToggle()
+        })
+        $(window).resize(function () {
+          var w = $(window).width()
+          if (w > 320 && menu.is(':hidden')) {
+            menu.removeAttr('style')
+          }
+        })
+      })
+    </script>
     <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>
