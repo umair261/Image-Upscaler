@@ -688,9 +688,9 @@ span.contact-title {
 
 .show-slider {
   background: whitesmoke;
-  padding: 1% 1% 1.7% 1%;
+  padding: 1% 1% 1% 1%;
 }
-
+.h-screen{ background-color: whitesmoke; padding-bottom: 35px;}
 .section-head h3 {
   color: #282528;
   font-weight: 700;

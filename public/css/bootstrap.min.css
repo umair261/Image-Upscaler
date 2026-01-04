@@ -1508,7 +1508,8 @@ a.bg-primary:hover {
 .bg-success {
   background-color: #dff0d8;
 }
-
+.show-slider { padding: 1% 1% 1% 1%;}
+.h-screen{ background-color: whitesmoke; padding-bottom: 35px;}
 a.bg-success:hover {
   background-color: #c1e2b3;
 }
