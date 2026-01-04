@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="min-h-full flex flex-col">
-      <header className="z-10 shadow flex flex-row items-center md:justify-between h-14">
+      <header className="z-10 shadow bg-[whitesmoke] flex flex-row items-center md:justify-between h-14">
         <Button
           className={[
             file ? '' : 'opacity-50 pointer-events-none',
@@ -47,14 +47,9 @@ function App() {
           }}
         >
           <div className="md:w-[290px]">
-            <span className="hidden sm:inline select-none">
-              {m.start_new()}
-            </span>
+            <span className="select-none">{m.start_new()}</span>
           </div>
         </Button>
-        <div className="text-4xl font-bold text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out">
-          Image Upscaler
-        </div>
         <div className="hidden md:flex justify-end w-[300px] mx-1 sm:mx-5">
           {/* <Button
             className="w-38 flex sm:visible"

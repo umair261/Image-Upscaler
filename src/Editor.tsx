@@ -695,7 +695,12 @@ export default function Editor(props: EditorProps) {
           {m.original()}
         </Button>
         {!showOriginal && (
-          <Button onUp={onSuperResolution}>{m.upscale()}</Button>
+          <Button
+            onUp={onSuperResolution}
+            className="bg-[#e5e5e5] text-black hover:bg-gray-300 transition"
+          >
+            {m.upscale()}
+          </Button>
         )}
 
         <Button
@@ -705,6 +710,12 @@ export default function Editor(props: EditorProps) {
         >
           {m.download()}
         </Button>
+      </div>
+      <div className="max-w-4xl w-full mt-6">
+        <p className="text-base text-gray-700 text-center py-3">
+          <strong>Note:</strong> Click on 4× upscaling first, then press the
+          Download button.
+        </p>
       </div>
     </div>
   )
